@@ -2,12 +2,8 @@ package io.kraftsman.app.kmmkungfu.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import io.kraftsman.app.kmmkungfu.Greeting
+import io.kraftsman.app.kmmkungfu.Detector
 import android.widget.TextView
-
-fun greet(): String {
-    return Greeting().greeting()
-}
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +11,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        tv.text = Detector().detect()
     }
 }
