@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    kotlin("plugin.serialization") version "1.5.31"
 }
 
 version = "1.0"
@@ -21,28 +22,51 @@ kotlin {
 
     cocoapods {
         summary = "a KMM shared module"
-        homepage = "https://tw.kotlin.tips/"
+        homepage = "https://kraftsman.io/"
         ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
         podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "shared"
+        }
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                // Ktor
+                implementation("io.ktor:ktor-client-core:1.6.4")
+                implementation("io.ktor:ktor-client-serialization:1.6.4")
+
+                // Serialization
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.2.2")
+            }
+        }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting
+
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-android:1.6.4")
+            }
+        }
+
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+
+        val iosMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:1.6.4")
+            }
+        }
         val iosTest by getting
     }
 }
