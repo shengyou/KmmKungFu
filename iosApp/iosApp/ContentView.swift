@@ -3,7 +3,26 @@ import shared
 
 struct ContentView: View {
     @State private var passwordText = "🔒"
+    @State private var messageText = Detector().detect()
+    @State private var messageTextColor = Color.gray
+    
+    let validator = Validator()
     let versionText = Detector().detect()
+    
+    func validate() {
+        validator.inspect(password: passwordText) { response, error in
+            if let response = response {
+                if (response.result) {
+                    self.messageTextColor = Color.red
+                } else {
+                    self.messageTextColor = Color.green
+                }
+                self.messageText = response.message
+            } else if let error = error {
+                self.messageText = "Error: \(error)"
+            }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -23,9 +42,9 @@ struct ContentView: View {
                 .frame(width: 250, height: 80, alignment: Alignment.center)
                 .foregroundColor(.black)
             
-            Text(versionText)
+            Text(messageText)
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(messageTextColor)
             
             Spacer()
         }
@@ -33,6 +52,9 @@ struct ContentView: View {
             
         HStack {
             Button(action: {
+                messageText = versionText
+                messageTextColor = Color.gray
+                
                 passwordText = PasswordGenerator().generate(length: 10)
             }) {
                 Text("產生")
@@ -45,7 +67,10 @@ struct ContentView: View {
                     )
             }
             Button(action: {
+                messageText = versionText
+                messageTextColor = Color.gray
                 
+                validate()
             }) {
                 Text("檢查")
                     .frame(width: 50, height: 15, alignment: Alignment.center)
