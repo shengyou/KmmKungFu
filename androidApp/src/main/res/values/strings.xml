@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="android_logo_string">Android Logo</string>
+    <string name="default_password_string">🔒</string>
+    <string name="generate_button_string">產生</string>
+    <string name="inspect_button_string">檢查</string>
+    <string name="fetching_string">檢查中…</string>
+</resources>
