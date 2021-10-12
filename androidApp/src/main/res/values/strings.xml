@@ -4,5 +4,4 @@
     <string name="default_password_string">🔒</string>
     <string name="generate_button_string">產生</string>
     <string name="inspect_button_string">檢查</string>
-    <string name="fetching_string">檢查中…</string>
 </resources>

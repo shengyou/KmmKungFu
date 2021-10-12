@@ -13,7 +13,7 @@ class Validator {
     }
 
     suspend fun inspect(password: String): InspectResponse {
-        return httpClient.post("http://localhost:8080/api/v1/passwords/inspection") {
+        return httpClient.post("https://28f0-36-231-101-189.ngrok.io/api/v1/passwords/inspection") {
             accept(ContentType.Application.Json)
             contentType(ContentType.Application.Json)
             body = InspectRequest(password)

@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/responseText"
+        android:id="@+id/passwordTextView"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:text="@string/default_password_string"
@@ -60,7 +60,7 @@
         tools:text="eDci2^$jci" />
 
     <TextView
-        android:id="@+id/versionTextView"
+        android:id="@+id/messageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -70,7 +70,7 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/responseText"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
         tools:text="Android version 10.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
