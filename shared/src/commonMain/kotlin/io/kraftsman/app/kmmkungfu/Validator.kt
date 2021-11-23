@@ -6,6 +6,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 class Validator {
+    private val apiUrl = "https://5c6e-36-231-97-14.ngrok.io"
     private val httpClient = httpClient() {
         install(JsonFeature) {
             serializer = KotlinxSerializer()
@@ -13,7 +14,7 @@ class Validator {
     }
 
     suspend fun inspect(password: String): InspectResponse {
-        return httpClient.post("https://28f0-36-231-101-189.ngrok.io/api/v1/passwords/inspection") {
+        return httpClient.post("$apiUrl/api/v1/passwords/inspection") {
             accept(ContentType.Application.Json)
             contentType(ContentType.Application.Json)
             body = InspectRequest(password)
